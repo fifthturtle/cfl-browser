@@ -1,0 +1,7 @@
+<div class="login-floater-wrapper" *ngIf="!!General.floatWindow.value">
+    <div class="login-floater">
+        <login-page *ngIf="General.floatWindow.value === float.LOGIN"></login-page>
+        <move-float *ngIf="General.floatWindow.value === float.MOVES"></move-float>
+        <activate-float *ngIf="General.floatWindow.value === float.ACTIVATION"></activate-float>
+    </div>
+</div>

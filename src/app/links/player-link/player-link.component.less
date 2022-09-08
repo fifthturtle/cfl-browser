@@ -1,0 +1,27 @@
+.player-link {
+  white-space: nowrap;
+
+  @media screen and (max-width: 600px) {
+    height: 15px;
+    font-weight: 700;
+    margin-top: 2px;
+  }
+
+  .player-name {
+    &:hover {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+  .add-icon {
+    color: darken(red, 20%);
+    cursor: pointer;
+    font-size: 16px;
+    vertical-align: top;
+  }
+
+  .clear {
+    color: transparent;
+    cursor: default;
+  }
+}

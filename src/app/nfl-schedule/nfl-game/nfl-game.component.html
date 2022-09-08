@@ -1,0 +1,17 @@
+<div class="nfl-game">
+    <div class="team-name">
+        <nfl-team-link [id]="game.away.id" [display]="'fullName'" [pic]="true"></nfl-team-link>
+    </div>
+    <div class="team-score">
+        {{ game.away.score }}
+    </div>
+    <div class="team-name">
+        <nfl-team-link [id]="game.home.id" [display]="'fullName'" [pic]="true"></nfl-team-link>
+    </div>
+    <div class="team-score">
+        {{ game.home.score }}
+    </div>
+    <div class="game-status">
+        {{ game | gameStatus }}
+    </div>
+</div>

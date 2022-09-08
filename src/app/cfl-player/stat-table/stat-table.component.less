@@ -1,0 +1,109 @@
+@primary-color: darkgreen;
+@black: black;
+@line-bg-color: lighten(@primary-color, 2%);
+@line-color: wheat;
+@line-bg-alt: darken(wheat, 2%);
+@line-color-alt: black;
+
+.stat-table {
+  height: 100%;
+  overflow-y: hidden;
+
+  .stat-table-body {
+    .stat-table-row {
+      background-color: @line-bg-color;
+      color: @line-color;
+      .ir-icon {
+        height: 16px;
+        cursor: pointer;
+        color: wheat;
+        font-size: 16px;
+        vertical-align: text-bottom;
+      }
+
+      &:nth-child(odd) {
+        background-color: @line-bg-alt;
+        color: @line-color-alt;
+
+        .ir-icon {
+          color: black;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .offense {
+    & > div:nth-child(3n + 6) {
+      border-left: 2px solid black;
+    }
+  }
+
+  .odd {
+    background-color: @line-bg-alt;
+    color: @line-color-alt;
+  }
+
+  .stat-totals {
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    font-weight: 900;
+
+    & > div {
+      padding-top: 6px;
+    }
+  }
+
+  .stat-table-row {
+    display: flex;
+
+    & > div {
+      flex: 1;
+      text-align: center;
+    }
+
+    & > div:nth-child(2) {
+      flex: 4;
+      text-align: left;
+    }
+
+    & > div:nth-child(3) {
+      text-align: left;
+    }
+
+    & > div:nth-child(4) {
+      flex: 2;
+      text-align: left;
+    }
+
+    & > div:nth-child(5) {
+      text-align: left;
+      flex: 4;
+    }
+  }
+
+  .stat-table-upper-header {
+    display: flex;
+
+    & > div {
+      flex: 1;
+    }
+
+    & > div:nth-child(2) {
+      flex: 4;
+    }
+
+    & > div:nth-child(4) {
+      flex: 2;
+    }
+
+    & > div:nth-child(5) {
+      flex: 4;
+    }
+
+    .stat-grouper {
+      flex: 3;
+      text-align: center;
+    }
+  }
+}

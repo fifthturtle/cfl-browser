@@ -1,0 +1,27 @@
+<div class="player-link">
+    <span class="player-name" (click)="Navigate()">
+        {{ player.firstname + " " + player.lastname }}
+    </span>
+    <mat-icon
+        *ngIf="available"
+        class="add-icon"
+        (click)="addWaiver()"
+        #tooltip="matTooltip"
+        matTooltip="Make Waiver Claim"
+        matTooltipPosition="right"
+        matTooltipShowDisplay="250"
+    >
+        person_add
+    </mat-icon>
+    <mat-icon
+        *ngIf="IR"
+        class="add-icon"
+        (click)="activate()"
+        #tooltip="matTooltip"
+        matTooltip="Activate Player"
+        matTooltipPosition="right"
+        matTooltipShowDisplay="250"
+    >
+        person_add
+    </mat-icon>
+</div>

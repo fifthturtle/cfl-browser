@@ -19,11 +19,21 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
   },
   "angularCompilerOptions": {
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
+  },
+  "paths": {
+    "crypto": [
+      "node_modules/crypto-js"
+    ],
+    "http": [
+      "@angular/common/http"
+    ]
   }
 }

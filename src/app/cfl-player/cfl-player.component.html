@@ -1,0 +1,23 @@
+<div class="main-content" *ngIf="!!player">
+    <div class="left-content cfl-player-content">
+        <div class="header">
+            Season Summary
+        </div>
+        <stat-table [stats]="!!player && player.weeks" [totals]="player.stats" [score]="player.score" [position]="player.position"></stat-table>
+    </div>
+
+    <div class="right-content player-info" *ngIf="!!player">
+        <img class="player-headshot" [src]="player.pic">
+        <div class="funky-header">{{ player.firstname + " " + player.lastname }}</div>
+        <div>{{ player.position }} | 
+            <nfl-team-link [id]="player.weeks[player.weeks.length - 1].nflteam" [display]="'fullName'"></nfl-team-link>
+        </div>
+        <div class="heavy">Drafted:</div>
+        <div *ngIf="!!draft">
+            Round {{ draft.round }} by <cfl-team-link [id]="draft.team"></cfl-team-link>
+            <br />
+            {{ (draftSpot + 1) | Ordinal }} Overall Pick
+        </div>
+        <div *ngIf="!draft">Undrafted</div>
+    </div>
+</div>

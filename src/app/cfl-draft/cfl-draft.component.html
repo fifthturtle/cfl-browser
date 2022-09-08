@@ -1,0 +1,58 @@
+<div class="main-content">
+    <div class="right-content filters">
+        <div class="funky-header">Filters</div>
+        <div class="filter-section">
+            <select [(ngModel)]="filters.value.round" (change)="filterChanged()">
+                <option [ngValue]="0">All</option>
+                <option *ngFor="let pos of rounds" [ngValue]="pos">{{ pos }}</option>
+            </select>
+            <div>Round</div>
+        </div>
+        <div class="filter-section">
+            <select [(ngModel)]="filters.value.cflteam" (change)="filterChanged()">
+                <option [ngValue]="0">All</option>
+                <option *ngFor="let team of cflteams" [ngValue]="team._id">{{ team.team_name }}</option>
+            </select>
+            <div>CFL Team</div>
+        </div>
+        <div class="filter-section">
+            <select [(ngModel)]="filters.value.nflteam" (change)="filterChanged()">
+                <option [ngValue]="0">All</option>
+                <option *ngFor="let team of nflteams" [ngValue]="team._id">{{ team.fullName }}</option>
+            </select>
+            <div>NFL Team</div>
+        </div>
+        <div class="filter-section">
+            <select [(ngModel)]="filters.value.position" (change)="filterChanged()">
+                <option [ngValue]="0">All</option>
+                <option *ngFor="let pos of positions" [ngValue]="pos">{{ pos }}</option>
+            </select>
+            <div>Position</div>
+        </div>
+        <div class="filter-button">
+            <button mat-button-raised (click)="resetFilters()">Reset Filters</button>
+        </div>
+    </div>
+    <div class="left-content">
+        <div class="header funky-header">Cfl Draft Recap</div>
+        <div *ngIf="!!draft.length" class="table draft-table">
+            <div class="table-row table-header draft-table-row">
+                <div>#</div>
+                <div>Rnd</div>
+                <div>CFL Team</div>
+                <div>Player</div>
+                <div>Position</div>
+                <div>NFL Team</div>
+            </div>
+            <perfect-scrollbar>
+                <div class="table-body">
+                    <ng-container *ngFor="let player of draft; let i = index">
+                        <div *ngIf="player.show" class="table-row no-flex">
+                            <player-line *ngIf="player.show" [pick]="i + 1" [id]="player.id" [round]="player.round" [team]="player.team"></player-line>
+                        </div>
+                    </ng-container>
+                </div>
+            </perfect-scrollbar>
+        </div>
+    </div>
+</div>

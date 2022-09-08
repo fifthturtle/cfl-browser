@@ -1,0 +1,18 @@
+<div class="ticker-game" *ngIf="!!team1 && !!team2">
+    <div class="game">
+        <div>{{ team1.team_name }}</div>
+        <div class="game-score">{{ game.team1.score }}
+            <span class="tiebreaker" *ngIf="!!game.team1.score && game.team1.score === game.team2.score">
+                ({{game.team1.tiebreaker}})
+            </span>
+        </div>
+    </div>
+    <div class="game">
+        <div>{{ team2.team_name }}</div>
+        <div class="game-score">{{ game.team2.score }}
+            <span class="tiebreaker" *ngIf="!!game.team1.score && game.team1.score === game.team2.score">
+                ({{game.team2.tiebreaker}})
+            </span>
+        </div>
+    </div>
+</div>

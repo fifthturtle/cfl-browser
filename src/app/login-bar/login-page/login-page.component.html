@@ -1,0 +1,50 @@
+<div class="login-floater-inner" *ngIf="General.floatWindow.value === float.LOGIN">
+    <div class="close-button" (click)="General.showFloat(float.NONE)">
+        <mat-icon>dangerous</mat-icon>
+    </div>
+    <div class="header">
+        CFL Login Page
+    </div>
+    <div class="form">
+        <div *ngIf="!owner">
+            <div class="login-info">
+                <div *ngIf="!owner">
+                    <div class="form-input">
+                        <label>Username:</label>
+                        <input mat-input type="text" [(ngModel)]="username">
+                    </div>
+                    <div class="form-input">
+                        <label>Password:</label>
+                        <input mat-input type="password" [(ngModel)]="password">
+                        <div class="form-link" (click)="resetPassword()">
+                            Forgot My Password
+                        </div>
+                    </div>
+                    <div class="form-input">
+                        <mat-checkbox [(ngModel)]="autoLogin">Remember Me</mat-checkbox>
+                    </div>
+                    <div class="login-message" *ngIf="!!owners.loginMessage.value">
+                        <div>
+                            <mat-icon class="icon">warning</mat-icon>
+                        </div>
+                        <div class="text">
+                            {{ owners.loginMessage.value }}
+                        </div>
+                    </div>
+                    <button mat-icon-button (click)="login()" class="button">
+                        <mat-icon class="login-button">login</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+    
+        <div *ngIf="!!owner">
+            <div>
+                Welcome {{ owner.firstname + " " + owner.lastname }}
+            </div>
+            <button mat-icon-button (click)="logout()" class="button">
+                <mat-icon>logout</mat-icon>
+            </button>
+        </div>
+    </div>
+</div>

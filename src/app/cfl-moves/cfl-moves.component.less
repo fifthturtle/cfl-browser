@@ -1,0 +1,104 @@
+.moves-wrapper {
+  height: 65vh;
+  overflow-y: hidden;
+
+  .move-body-message {
+    text-align: center;
+    margin: 6px;
+  }
+
+  .move-table {
+    .move-row {
+      min-height: 50px;
+      & > div {
+        flex: 4;
+      }
+
+      & > div:nth-child(1) {
+        flex: 1.5;
+      }
+      mat-icon {
+        height: 16px;
+        cursor: pointer;
+        color: wheat;
+      }
+
+      &:nth-child(odd) {
+        mat-icon {
+          color: black;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .player-move {
+      flex: 8;
+
+      .player-move-wrapper {
+        display: inline-block;
+        margin-left: 10px;
+        vertical-align: super;
+      }
+
+      img {
+        height: 40px;
+        width: 40px;
+        background-color: rgba(255, 255, 255, 0.3);
+        border: 2px solid black;
+        border-radius: 50%;
+      }
+
+      .ir-icon {
+        cursor: default;
+        font-size: 1.2em;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.oblique {
+  font-style: italic;
+  font-size: smaller;
+  margin-left: 8px;
+}
+
+.trade-column-1 {
+  flex: 0.2 !important;
+}
+
+.moves-right-content {
+  background-color: darkgreen;
+  .funky-header {
+    background: linear-gradient(black, darkgreen);
+    padding: 5%;
+    padding-bottom: 0;
+  }
+  ul {
+    list-style-type: none;
+    overflow: hidden;
+    background-color: #333;
+  }
+
+  li {
+    display: block;
+    color: white;
+    padding: 2px 12px;
+    text-decoration: none;
+
+    mat-icon {
+      color: transparent;
+      vertical-align: middle;
+    }
+
+    .visible {
+      color: white;
+    }
+  }
+
+  li:hover {
+    background-color: #111;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,63 @@
+.waivers-wrapper {
+  height: 65vh;
+  overflow-y: hidden;
+
+  .waiver-header {
+    @media screen and (max-width: 600px) {
+      display: none;
+    }
+  }
+
+  .waiver-body-message {
+    text-align: center;
+    margin: 6px;
+  }
+
+  .waiver-table {
+    .waiver-row {
+      mat-icon {
+        height: 16px;
+        cursor: pointer;
+        color: wheat;
+      }
+
+      &:nth-child(odd) {
+        mat-icon {
+          color: black;
+        }
+      }
+
+      .move-waiver {
+        flex: 1;
+        text-align: center;
+
+        mat-icon {
+          line-height: 50px;
+        }
+      }
+
+      .player-waiver {
+        flex: 8;
+
+        .player-waiver-wrapper {
+          display: inline-block;
+          margin-left: 10px;
+          vertical-align: super;
+        }
+
+        img {
+          height: 40px;
+          width: 40px;
+          background-color: rgba(255, 255, 255, 0.3);
+          border: 2px solid black;
+          border-radius: 50%;
+        }
+
+        .ir-icon {
+          cursor: default;
+          font-size: 1.2em;
+        }
+      }
+    }
+  }
+}

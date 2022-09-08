@@ -1,0 +1,56 @@
+// @media only screen and (max-width: 600px) {
+//   .nav-bar {
+//     display: none;
+//   }
+// }
+
+.whole-app {
+  max-width: 1280px;
+  position: relative;
+  margin: auto;
+  height: 100%;
+  overflow: hidden;
+
+  // @media screen and (max-width: 600px) {
+  //   max-width: 375px;
+  // }
+}
+
+.nav-content-wrapper {
+  height: 100%;
+  display: flex;
+  div {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .nav-bar {
+    background-color: #333;
+    width: 10%;
+    text-align: center;
+    padding-top: 14px;
+
+    @media screen and (max-width: 600px) {
+      display: none;
+    }
+
+    .logo {
+      font-size: 2em;
+      color: white;
+      font-family: "Anton";
+      margin-bottom: 16px;
+    }
+  }
+}
+
+.login-floater {
+  position: absolute;
+  width: 34%;
+  margin: 1.5% auto;
+  left: 0;
+  right: 0;
+
+  @media screen and (max-width: 600px) {
+    width: 80%;
+  }
+}

@@ -1,0 +1,5 @@
+<span class="nav-link" (click)="navigate()">{{ team && team.team_name }}</span>
+<ng-container *ngIf="!id">
+    <span *ngIf="!fullname">FA</span>
+    <span *ngIf="!!fullname">Free Agent</span>
+</ng-container>

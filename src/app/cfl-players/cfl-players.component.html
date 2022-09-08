@@ -1,0 +1,151 @@
+<ng-template #statFilters>
+    <div class="funky-header">Filters</div>
+    <div class="filter-section">
+        <select [(ngModel)]="PlayerService.statFilters.value.positions" (change)="filterChanged()">
+            <option *ngFor="let pos of PlayerService.positions; index as i" [ngValue]="i">{{ pos.text }}</option>
+        </select>
+        <div>Position
+            <span
+                *ngIf="PlayerService.statFilters.value.positions > 0"
+                class="reset-filter"
+                (click)="resetFilter('positions')"
+            >Reset</span>
+        </div>
+    </div>
+    <div class="filter-section">
+        <select [(ngModel)]="PlayerService.statFilters.value.cflteam" (change)="filterChanged()">
+            <option [ngValue]="-1">All</option>
+            <option [ngValue]="0">Free Agents</option>
+            <option *ngFor="let team of cflteams" [ngValue]="team._id">{{ team.team_name }}</option>
+        </select>
+        <div>CFL Team
+            <span
+                *ngIf="PlayerService.statFilters.value.cflteam !== 0"
+                class="reset-filter"
+                (click)="resetFilter('cflteam', 0)"
+            >FA</span>
+            <span
+                *ngIf="PlayerService.statFilters.value.cflteam >= 0"
+                class="reset-filter"
+                (click)="resetFilter('cflteam', -1)"
+            >Reset</span>
+        </div>
+    </div>
+    <div class="filter-section">
+        <select [(ngModel)]="PlayerService.statFilters.value.nflteam" (change)="filterChanged()">
+            <option [ngValue]="0">All</option>
+            <option *ngFor="let team of nflteams" [ngValue]="team._id">{{ team.fullName }}</option>
+        </select>
+        <div>NFL Team
+            <span
+                *ngIf="PlayerService.statFilters.value.nflteam > 0"
+                class="reset-filter"
+                (click)="resetFilter('nflteam')"
+            >Reset</span>
+        </div>
+    </div>
+    <div class="filter-section" *ngIf="week > 2">
+        Week 
+        <select class="short-select" [(ngModel)]="PlayerService.statFilters.value.start" (change)="filterChanged()">
+            <option *ngFor="let week of weeks.start" [ngValue]="week">{{ week }}</option>
+        </select>
+         to 
+        <select class="short-select" [(ngModel)]="PlayerService.statFilters.value.end" (change)="filterChanged()">
+            <option *ngFor="let week of weeks.end" [ngValue]="week">{{ week }}</option>
+        </select>
+        <span
+            class="reset-filter"
+            (click)="LastWeek()"
+        >Last Week</span>
+    </div>
+    <div class="filter-section">
+        <mat-checkbox [(ngModel)]="PlayerService.statFilters.value.nofreeagents" (change)="filterChanged()">Hide NFL Free Agents</mat-checkbox>
+    </div>
+    <div class="filter-section">
+        <mat-checkbox [(ngModel)]="PlayerService.statFilters.value.hideZeros" (change)="filterChanged()">Hide Zeroes</mat-checkbox>
+    </div>
+    <div class="filter-button">
+        <button mat-button-raised (click)="resetFilters()">Reset Filters</button>
+    </div>
+</ng-template>
+
+<div class="main-content">
+    <div class="team-header right-content filters">
+        <ng-container *ngTemplateOutlet="statFilters"></ng-container>
+    </div>
+    <div class="left-content">
+        <div class="right-content-for-phone" *ngIf="showFilter">
+            <div class="stats-right-content">
+                <ng-container *ngTemplateOutlet="statFilters"></ng-container>
+            </div>
+        </div>
+        <div class="header stats-header">
+            Season Stats
+            <div class="filter-button">
+                <button mat-fab color="accent" (click)="showFilter = !showFilter">
+                    <mat-icon>{{ showFilter ? 'close' : 'filter_list'}}</mat-icon>
+                </button>
+            </div>
+        </div>
+        <div class="table stat-table">
+            <div class="table-row table-header stat-table-upper-header" *ngIf="showingOffense">
+                <div class="player-image-stats"></div>
+                <div></div>
+                <div></div>
+                <div class="stat-grouper">PASSING</div>
+                <div class="stat-grouper">RUSHING</div>
+                <div class="stat-grouper">RECEIVING</div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="table-row stat-table-row stat-table-header">
+                <div class="player-image-stats"></div>
+                <div></div>
+                <div>CFL</div>
+                <div class="stats-select">
+                    <select [(ngModel)]="myCode" (change)="ChangeCode()">
+                        <option *ngFor="let code of currStatCodes" [ngValue]="code._id">{{ code.shortName }}</option>
+                        <option [ngValue]="'score'">Score</option>
+                    </select>
+                </div>
+                <div *ngFor="let code of currStatCodes" (click)="selectCode(code._id)" class="can-click" class="phone-hide">{{ code.abbr }}</div>
+                <div (click)="selectCode('score')" class="can-click" class="phone-hide">Score</div>
+            </div>
+            <div class="table-row stat-table-row stat-table-sort">
+                <div class="player-image-stats"></div>
+                <div></div>
+                <div></div>
+                <div *ngFor="let code of currStatCodes" [ngClass]="{ 'phone-hide': PlayerService.selectedCode.value !== code._id, 'phone-show': PlayerService.selectedCode.value === code._id }">
+                    <mat-icon *ngIf="PlayerService.selectedCode.value === code._id">{{ PlayerService.direction.value === 'desc' ? 'arrow_drop_down' : 'arrow_drop_up' }}</mat-icon>
+                </div>
+                <div [ngClass]="{ 'phone-hide': PlayerService.selectedCode.value !== 'score', 'phone-show': PlayerService.selectedCode.value === 'score' }">
+                    <mat-icon *ngIf="PlayerService.selectedCode.value === 'score'">{{ PlayerService.direction.value === 'desc' ? 'arrow_drop_down' : 'arrow_drop_up' }}</mat-icon>
+                </div>
+            </div>
+            <perfect-scrollbar>
+                <div class="table-body">
+                    <div class="table-row stat-table-row stat=table-player-row" *ngFor="let player of allPlayers" [ngClass]="{'offense': showingOffense}">
+                        <div class="player-image-stats">
+                            <img [src]="player.pic">
+                        </div>
+                        <div>
+                            <player-link [player]="player"></player-link>
+                            <div>
+                                {{ player.position }} | 
+                                <nfl-team-link [id]="player.weeks[player.weeks.length-1].nflteam" display="nickName"></nfl-team-link>
+                            </div>
+                        </div>
+                        <div>
+                            <cfl-team-link [id]="player.weeks[player.weeks.length-1].cflteam" [fullname]="true"></cfl-team-link>
+                        </div>
+                        <div *ngFor="let code of currStatCodes" [ngClass]="{ 'phone-hide': PlayerService.selectedCode.value !== code._id, 'phone-show': PlayerService.selectedCode.value === code._id }">
+                            {{ player.tally[code._id] || 0 }}
+                        </div>
+                        <div [ngClass]="{ 'phone-hide': PlayerService.selectedCode.value !== 'score', 'phone-show': PlayerService.selectedCode.value === 'score' }">{{ player.tally.score }}</div>
+                    </div>
+                </div>
+            </perfect-scrollbar>
+        </div>
+    </div>
+</div>

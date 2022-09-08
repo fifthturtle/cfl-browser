@@ -1,0 +1,153 @@
+<ng-template #filters>
+    <div class="funky-header">
+        Rounds
+    </div>
+    <ul>
+        <li *ngFor="let n of [1,2,3,4,5]">
+            <mat-icon [ngClass]="{'visible': round === n}">chevron_right</mat-icon>
+            <button mat-button (click)="changeRound(n)" [disabled]="n > totalRounds">Round {{ n }}</button>
+        </li>
+        <li>
+            <mat-icon [ngClass]="{'visible': round === 'activations'}">chevron_right</mat-icon>
+            <button mat-button (click)="changeRound('activations')" [disabled]="!activations || !activations.length">Activations</button>
+        </li>
+        <li>
+            <mat-icon [ngClass]="{'visible': round === 'trades'}">chevron_right</mat-icon>
+            <button mat-button (click)="changeRound('trades')" [disabled]="!trades || !trades.length">Trades</button>
+        </li>
+    </ul>
+</ng-template>
+
+<div class="main-content">
+    <div class="right-content">
+        <ng-container *ngTemplateOutlet="filters"></ng-container>
+    </div>
+    <div class="left-content moves-wrapper">
+        <div class="right-content-for-phone " *ngIf="showFilter">
+            <div class="moves-right-content">
+                <ng-container *ngTemplateOutlet="filters"></ng-container>
+            </div>
+        </div>
+        <div class="table-header"></div>
+        <div class="header">
+            Week {{ week }} Transactions
+            <div class="filter-button">
+                <button mat-fab color="accent" (click)="showFilter = !showFilter">
+                    <mat-icon>{{ showFilter ? 'close' : 'filter_list'}}</mat-icon>
+                </button>
+            </div>
+        </div>
+        <div class="move-body-message" *ngIf="(!moves || !moves.length) && (!activations || !activations.length) && (!trades || !trades.length)">
+            No Moves Have Been Made this week...yet.
+        </div>
+        <div class="table move-table" *ngIf="(!!moves && !!moves.length) || (!!activations && !!activations.length)">
+            <div class="table-header">
+                <div class="table-row move-header">
+                    <ng-container *ngIf="round !== 'trades'">
+                        <div class="player-move">CFL Team</div>
+                        <div class="player-move">{{ round === 'activations' ? 'Activated' : 'Picked Up' }}</div>
+                        <div class="player-move">Dropped</div>
+                    </ng-container>
+                    <ng-container *ngIf="round === 'trades'">
+                        <div class="player-move trade-column-1"></div>
+                        <div class="player-move">Team 1</div>
+                        <div class="player-move">Team 2</div>
+                    </ng-container>
+                </div>
+            </div>
+            <perfect-scrollbar>
+                <div class="table-body">
+                    <ng-container *ngIf="round === 'trades'">
+                        <div class="table-row move-row" *ngFor="let trade of trades">
+                            <div class="trade-column-1"></div>
+                            <div>
+                                <cfl-team-link [id]="trade.team1.id"></cfl-team-link>
+                                <span class="oblique">acquires</span>
+                                <div *ngFor="let player of trade.team1players" class="player-move">
+                                    <img [src]="player.pic">
+                                    <div class="player-move-wrapper">
+                                        <div class="player-move-name nav-link" (click)="Navigate('player', player._id)">
+                                            {{ player.fullname }}
+                                        </div>
+                                        <div class="player-move-info">
+                                            {{ player.position }} | 
+                                            <nfl-team-link [id]="player.weeks[player.weeks.length - 1].nflteam" display="fullName"></nfl-team-link>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <cfl-team-link [id]="trade.team2.id"></cfl-team-link>
+                                <span class="oblique">acquires</span>
+                                <div *ngFor="let player of trade.team2players" class="player-move">
+                                    <img [src]="player.pic">
+                                    <div class="player-move-wrapper">
+                                        <div class="player-move-name nav-link" (click)="Navigate('player', player._id)">
+                                            {{ player.fullname }}
+                                        </div>
+                                        <div class="player-move-info">
+                                            {{ player.position }} | 
+                                            <nfl-team-link [id]="player.weeks[player.weeks.length - 1].nflteam" display="fullName"></nfl-team-link>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="round !== 'trades'">
+                        <div class="table-row move-row" *ngFor="let move of currentRound; let first = first; let last = last;let i = index">
+                            <div>
+                                <cfl-team-link [id]="move.team"></cfl-team-link>
+                            </div>
+                            <div class="player-move">
+                                <ng-container *ngIf="!!move.plrPu">
+                                    <img [src]="move.plrPu.pic">
+                                    <div class="player-move-wrapper">
+                                        <div class="player-move-name nav-link" (click)="Navigate('player', move.pu)">
+                                            {{ move.plrPu.fullname }}
+                                            <mat-icon *ngIf="!move.plrDrop && !!move.IR"
+                                                class="ir-icon"
+                                                #tooltip="matTooltip"
+                                                matTooltip="Moved To IR"
+                                                matTooltipShowDelay="50"
+                                            >
+                                                elderly
+                                            </mat-icon>
+                                        </div>
+                                        <div class="player-move-info">
+                                            {{ move.plrPu.position }} | 
+                                            <nfl-team-link [id]="move.plrPu.weeks[move.plrPu.weeks.length - 1].nflteam" display="fullName"></nfl-team-link>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                            </div>
+                            <div class="player-move">
+                                <ng-container *ngIf="!!move.plrDrop">
+                                    <img [src]="move.plrDrop.pic">
+                                    <div class="player-move-wrapper">
+                                        <div class="player-move-name nav-link" (click)="Navigate('player', move.drop)">
+                                            {{ move.plrDrop.fullname }}
+                                            <mat-icon *ngIf="!!move.IR"
+                                                class="ir-icon"
+                                                #tooltip="matTooltip"
+                                                matTooltip="Moved To IR"
+                                                matTooltipShowDelay="50"
+                                            >
+                                                elderly
+                                            </mat-icon>
+                                        </div>
+                                        <div class="player-move-info">
+                                            {{ move.plrDrop.position }} | 
+                                            <nfl-team-link [id]="move.plrDrop.weeks[move.plrDrop.weeks.length - 1].nflteam" display="fullName"></nfl-team-link>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>   
+                    </ng-container>
+                </div>
+            </perfect-scrollbar>
+        </div>
+    </div>
+</div>
+

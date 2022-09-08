@@ -1,0 +1,97 @@
+<div class="waivers-wrapper" >
+    <div class="header waiver-header">
+        Waiver Order
+    </div>
+    <div class="waiver-body-message" *ngIf="!waivers">
+        You have not made any waiver claims for this round.
+    </div>
+    <div class="table waiver-table">
+        <div class="table-header table-row waiver-header waiver-row"  *ngIf="!!waivers">
+            <div class="move-waiver"></div>
+            <div class="move-waiver"></div>
+            <div class="player-waiver">Pick Up</div>
+            <div class="player-waiver">Drop</div>
+            <div class="move-waiver"></div>
+        </div>
+        <perfect-scrollbar [ngStyle]="scrollStyle">
+            <div class="table-body" #scroller>
+                <ng-container  *ngIf="!!waivers">
+                    <div class="table-row waiver-row" *ngFor="let waiver of waivers; let first = first; let last = last;let i = index">
+                        <div class="move-waiver">
+                            <mat-icon *ngIf="!first"
+                                #tooltip="matTooltip"
+                                matTooltip="Move Up One Priority"
+                                matTooltipShowDelay="250"
+                                (click)="moveWaiver(i, -1)"
+                            >
+                                arrow_circle_up
+                            </mat-icon>
+                        </div>
+                        <div class="move-waiver">
+                            <mat-icon *ngIf="!last"
+                                #tooltip="matTooltip"
+                                matTooltip="Move Down One Priority"
+                                matTooltipShowDelay="250"
+                                (click)="moveWaiver(i, 1)"
+                            >
+                                arrow_circle_down
+                            </mat-icon>
+                        </div>
+                        <div class="player-waiver">
+                            <img [src]="waiver.plrPu.pic">
+                            <div class="player-waiver-wrapper">
+                                <div class="player-waiver-name nav-link" (click)="Navigate('player', waiver.pu)">
+                                    {{ waiver.plrPu.fullname }}
+                                    <mat-icon *ngIf="!waiver.plrDrop && !!waiver.IR"
+                                        class="ir-icon"
+                                        #tooltip="matTooltip"
+                                        matTooltip="Moving To IR"
+                                        matTooltipShowDelay="50"
+                                    >
+                                        elderly
+                                    </mat-icon>
+                                </div>
+                                <div class="player-waiver-info">
+                                    {{ waiver.plrPu.position }} | 
+                                    <nfl-team-link [id]="waiver.plrPu.weeks[waiver.plrPu.weeks.length - 1].nflteam" display="fullName"></nfl-team-link>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="player-waiver">
+                            <ng-container *ngIf="!!waiver.plrDrop">
+                                <img [src]="waiver.plrDrop.pic">
+                                <div class="player-waiver-wrapper">
+                                    <div class="player-waiver-name nav-link" (click)="Navigate('player', waiver.drop)">
+                                        {{ waiver.plrDrop.fullname }}
+                                        <mat-icon *ngIf="!!waiver.IR"
+                                            class="ir-icon"
+                                            #tooltip="matTooltip"
+                                            matTooltip="Moving To IR"
+                                            matTooltipShowDelay="50"
+                                        >
+                                            elderly
+                                        </mat-icon>
+                                    </div>
+                                    <div class="player-waiver-info">
+                                        {{ waiver.plrDrop.position }} | 
+                                        <nfl-team-link [id]="waiver.plrDrop.weeks[waiver.plrDrop.weeks.length - 1].nflteam" display="fullName"></nfl-team-link>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
+                        <div class="move-waiver">
+                            <mat-icon
+                                #tooltip="matTooltip"
+                                matTooltip="Delete Waiver"
+                                matTooltipShowDelay="250"
+                                (click)="deleteWaiver(i)"
+                            >
+                                delete
+                            </mat-icon>
+                        </div>
+                    </div>   
+                </ng-container>
+            </div>
+        </perfect-scrollbar>
+    </div>
+</div>

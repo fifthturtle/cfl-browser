@@ -1,0 +1,57 @@
+<ng-template #myDivisions>
+    <ul>
+        <li *ngFor="let div of divisions; let i = index;">
+            <mat-icon [ngClass]="{'visible': division === i}">chevron_right</mat-icon>
+            <button mat-button (click)="ChangeDivision(i)">{{ div }}</button>
+        </li>
+    </ul>
+</ng-template>
+
+<div class="main-content">
+    <app-file-upload></app-file-upload>
+    <div class="right-content">
+        <ng-container *ngTemplateOutlet="myDivisions"></ng-container>
+    </div>
+    <div class="left-content">
+        <div class="right-content-for-phone " *ngIf="showFilter">
+            <div class="moves-right-content">
+                <ng-container *ngTemplateOutlet="myDivisions"></ng-container>
+            </div>
+        </div>
+        <div class="header">
+            {{ divisions[division] }} Standings
+            <div class="filter-button">
+                <button mat-fab color="accent" (click)="showFilter = !showFilter">
+                    <mat-icon>{{ showFilter ? 'close' : 'filter_list'}}</mat-icon>
+                </button>
+            </div>
+        </div>
+        <div class="table">
+            <div class="table-row table-header standings-row standings-header">
+                <div>Team</div>
+                <div>W</div>
+                <div>L</div>
+                <div>GB</div>
+                <div>PCT</div>
+                <div>Streak</div>
+                <div>Points</div>
+            </div>
+            <perfect-scrollbar>
+                <div class="table-body">
+                    <div class="table-row standings-row" *ngFor="let team of standings">
+                        <div>
+                            <cfl-team-link [id]="team._id"></cfl-team-link>
+                        </div>
+                        <div>{{ team.wins }}</div>
+                        <div>{{ team.losses }}</div>
+                        <div>{{ team.gb | gb }}</div>
+                        <div>{{ team.pct | winPct }}</div>
+                        <div>{{ team.streak }}</div>
+                        <div>{{ team.points }}</div>
+                    </div>
+                </div>
+            </perfect-scrollbar>
+        </div>
+
+    </div>
+</div>

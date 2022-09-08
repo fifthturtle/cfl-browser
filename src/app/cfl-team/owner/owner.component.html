@@ -1,0 +1,22 @@
+<div class="header">
+    Team Owner<span *ngIf="owners.length > 1">s</span>
+</div>
+<div class="table">
+    <perfect-scrollbar style="max-height:395px">
+        <div class="table-body">
+            <div class="table-row" *ngFor="let owner of owners">
+                <div class="owner-info" (click)="tester()">
+                    <h1>{{ owner.firstname + " " + owner.lastname }}</h1>
+                    <div class="owner-data-wrapper">
+                        <mat-icon>phone</mat-icon>
+                        <span class="owner-data">{{ owner.phone && owner.phone.join("-") }}</span>
+                    </div>
+                    <div class="owner-data-wrapper">
+                        <mat-icon>email</mat-icon>
+                        <span class="owner-data">{{ owner.alt_email }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </perfect-scrollbar>
+</div>

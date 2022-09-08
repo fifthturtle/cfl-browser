@@ -1,0 +1,10 @@
+<div class="draft-table-row" *ngIf="!!player">
+    <div class="draft-number">{{ pick }}</div>
+    <div class="draft-round">{{ round }}</div>
+    <div class="nav-link" (click)="Nav('team', Team._id)">{{ Team.team_name }}</div>
+    <div (click)="Nav('player', player._id)" class="nav-link">{{ (player.firstname + " " + player.lastname).trim() }}</div>
+    <div>{{ player.position | fixDefense }}</div>
+    <div>
+        <nfl-team-link [id]="player.weeks[0].nflteam"></nfl-team-link>
+    </div>
+</div>

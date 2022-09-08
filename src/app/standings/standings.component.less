@@ -1,0 +1,20 @@
+.standings-row {
+  padding: 0.15% 8px;
+  & > div {
+    flex: 1;
+    text-align: center;
+  }
+
+  & > div:nth-child(1) {
+    text-align: left;
+    flex: 6;
+
+    @media screen and (max-width: 600px) {
+      flex: 4;
+    }
+  }
+}
+
+.standings-header {
+  font-weight: 900;
+}

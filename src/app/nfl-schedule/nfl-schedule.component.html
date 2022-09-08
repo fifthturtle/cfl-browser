@@ -1,0 +1,48 @@
+<div class="main-content">
+    <div class="right-content">
+        Week:  
+        <select [(ngModel)]="week" (change)="weekChanged()">
+            <option *ngFor="let num of weeks" [ngValue]="num">{{ num }}</option>
+        </select>
+    </div>
+
+    <div class="left-content">
+        <div class="header">
+            NFL Week {{ week }} Schedule
+        </div>
+        <div class="table">
+            <!-- <div class="table-header">
+                <div class="table-row nfl-schedule-row">
+                    <div class="team-name">
+                        Away Team
+                    </div>
+                    <div class="team-score">
+                    </div>
+                    <div class="team-name">
+                        Home Team
+                    </div>
+                    <div class="team-score">
+                    </div>
+                    <div class="game-status">
+                        Game Status
+                    </div>
+                </div>
+            </div> -->
+
+            <perfect-scrollbar>
+                <div class="table-body">
+                    <div class="table-row nfl-schedule-row" *ngFor="let game of schedule">
+                        <nfl-game [game]="game"></nfl-game>
+                    </div>
+                    <div class="table-row byes-row" *ngIf="!!byes && !!byes.length">
+                        <span class="byes-label">Byes:</span>
+                        <ng-container *ngFor="let id of byes; let last = last">
+                            <nfl-team-link [id]="id" [display]="'nickName'" [pic]="true"></nfl-team-link>
+                            <span *ngIf="!last">, </span>
+                        </ng-container>
+                    </div>
+                </div>
+            </perfect-scrollbar>
+        </div>
+    </div>
+</div>

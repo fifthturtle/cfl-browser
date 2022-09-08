@@ -1,0 +1,16 @@
+<div class="login-bar">
+    <button 
+        mat-icon-button
+        (click)="showLogin(1)"
+        class="login-info"
+        #tooltip="matTooltip"
+        [matTooltip]="tooltipMessage"
+        matTooltipShowDelay="250"
+        matTooltipPosition="left"
+    >
+        <mat-icon *ngIf="!owner">login</mat-icon>
+        <ng-container *ngIf="!!owner">
+            {{ owner.firstname.substring(0,1) + owner.lastname.substring(0,1) }}
+        </ng-container>
+    </button>
+</div>

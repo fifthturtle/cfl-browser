@@ -1,0 +1,18 @@
+<div class="main-content" *ngIf="!!owner && !!owner.admin">
+    <div class="right-content">
+        <div class="filter-section">
+            <mat-checkbox [(ngModel)]="allowMoves">Allow Moves</mat-checkbox>
+        </div>
+    </div>
+    <div class="left-content">
+        <div class="filter-section">
+            <button mat-button-raised color="primary" (click)="emit('update-players')">Update Players</button>
+        </div>
+        <div class="filter-section">
+            <button mat-button-raised color="primary" (click)="emit('do-moves')" [disabled]="!(allowMoves)">Do Moves</button>
+        </div>
+        <div class="filter-section">
+            <button mat-button-raised color="primary" (click)="emit('live-scoring')">Live Scoring</button>
+        </div>
+    </div>
+</div>

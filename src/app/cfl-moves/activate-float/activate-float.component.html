@@ -1,0 +1,38 @@
+<div class="move-float" *ngIf="!!player">
+    <mat-icon (click)="cancel()" class="cancel-button">cancel</mat-icon>
+    <div class="move-header">
+        Activate Player
+    </div>
+    <div class="move-body">
+        <div class="move-add-player">
+            <h3>Activate</h3>
+            <div>
+                <img [src]="player.pic" class="player-image">
+            </div>
+            <div>{{ player.firstname + " " + player.lastname }}</div>
+            <div>{{ player.position }}
+                    |
+                <nfl-team-link [id]="player.weeks[player.weeks.length - 1].nflteam" display="fullName"></nfl-team-link>
+            </div>
+            <mat-checkbox [(ngModel)]="actAndDrop">Activate and Drop</mat-checkbox>
+        </div>
+        <div class="move-drop-player">
+            <ng-container *ngIf="!actAndDrop">
+                <h3>Drop</h3>
+                <div *ngFor="let pos of valids" class="move-drop-position">
+                    <div class="move-drop-pos">{{ pos }}</div>
+                    <div class="move-drop-players">
+                        <div *ngFor="let plr of roster[pos]" class="move-drop-player" (click)="drop = plr._id" [ngClass]="{ 'drop': drop === plr._id }">
+                            <mat-icon *ngIf="drop === plr._id" class="check">check</mat-icon>
+                            {{ plr.firstname + " " + plr.lastname }}
+                        </div>
+                    </div>
+                </div>
+                <div><mat-checkbox [(ngModel)]="dropToIR">To IR</mat-checkbox></div>
+            </ng-container>
+        </div>
+    </div>
+    <div class="move-submit">
+        <button mat-raised-button [disabled]="!actAndDrop && !drop" (click)="activate()">Activate Player</button>
+    </div>
+</div>

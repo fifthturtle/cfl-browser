@@ -1,0 +1,193 @@
+.main-content {
+  .left-content {
+    width: 72%;
+
+    .stat-table {
+      .stat-table-sort {
+        height: 10px;
+        vertical-align: top;
+
+        mat-icon {
+          line-height: 30%;
+        }
+      }
+    }
+  }
+
+  .right-content {
+    width: 23%;
+  }
+}
+
+.phone-show {
+  @media screen and (max-width: 600px) {
+    width: 58px;
+    flex: 1;
+    text-align: center !important;
+  }
+}
+
+.phone-hide {
+  @media screen and (max-width: 600px) {
+    display: none;
+  }
+}
+
+.offense {
+  & > div:nth-child(3n + 4) {
+    border-left: 2px solid black;
+
+    @media screen and (max-width: 600px) {
+      border: 0;
+    }
+  }
+}
+
+.stat-table-player-row {
+  @media screen and (max-width: 600px) {
+    font-size: smaller;
+    height: 32px;
+  }
+}
+
+.stats-select {
+  display: none;
+  flex: 0;
+  @media screen and (max-width: 600px) {
+    text-align: left;
+    display: block;
+    width: 58px;
+    flex: 1;
+
+    select {
+      background-color: transparent;
+      color: wheat;
+      text-align: center;
+      margin-right: 6px;
+      border: 0;
+      appearance: none;
+      outline: 0;
+
+      option {
+        color: black;
+      }
+    }
+  }
+}
+
+.stat-table-row {
+  .player-image-stats {
+    flex: 1;
+    img {
+      background-color: rgba(237, 237, 237, 0.4);
+      border: 2px solid black;
+      border-radius: 50%;
+      height: 40px;
+      width: 40px;
+
+      @media screen and (max-width: 600px) {
+        height: 30px;
+        width: 30px;
+        margin-top: 4px;
+      }
+    }
+  }
+  .can-click {
+    cursor: pointer;
+  }
+
+  & > div {
+    flex: 1;
+    text-align: center;
+  }
+
+  & > div:nth-child(2) {
+    flex: 5;
+    text-align: left;
+    padding-left: 8px;
+
+    @media screen and (max-width: 600px) {
+      flex: 3.6;
+    }
+  }
+
+  & > div:nth-child(3) {
+    flex: 4;
+    text-align: left;
+
+    @media screen and (max-width: 600px) {
+      flex: 3;
+    }
+  }
+}
+
+.stat-table-upper-header {
+  display: flex;
+  @media screen and (max-width: 600px) {
+    display: none !important;
+  }
+  .player-image-stats {
+    flex: 1;
+  }
+
+  & > div {
+    flex: 1;
+  }
+
+  & > div:nth-child(2) {
+    flex: 5;
+
+    @media screen and (max-width: 600px) {
+      flex: 5.2;
+    }
+  }
+
+  & > div:nth-child(3) {
+    flex: 4;
+
+    @media screen and (max-width: 600px) {
+      flex: 3;
+    }
+  }
+
+  .stat-grouper {
+    flex: 3;
+    text-align: center;
+  }
+}
+
+.reset-filter {
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &::before {
+    content: "|";
+    margin: 0 4px;
+  }
+}
+
+.stats-right-content {
+  background-color: darkgreen;
+  .funky-header {
+    padding: 2%;
+    background: linear-gradient(black, darkgreen);
+  }
+  .filter-section {
+    background-color: darkgreen;
+    padding: 2%;
+  }
+  .filter-button {
+    background-color: darkgreen;
+    padding: 2%;
+    padding-bottom: 10px;
+    width: 100%;
+    text-align: right;
+
+    button {
+      margin-right: 16px;
+    }
+  }
+}

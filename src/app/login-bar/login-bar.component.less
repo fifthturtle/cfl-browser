@@ -1,0 +1,36 @@
+.login-bar {
+  background: linear-gradient(black, darkgreen);
+  background-image: url("http://www.cactusfantasy.com/images/football.jpg");
+  border-top: 2px solid beige;
+  color: white;
+  text-align: center;
+  height: 70px;
+  position: relative;
+
+  @media screen and (max-width: 600px) {
+    height: 42px;
+  }
+
+  .login-info {
+    position: absolute;
+    bottom: -15px;
+    right: 16px;
+    background: linear-gradient(black, darkgreen);
+    border-radius: 50%;
+    filter: drop-shadow(4px 4px 0px #000);
+    transform: scale(1.5);
+    transform-origin: right;
+    cursor: pointer;
+
+    @media screen and (max-width: 600px) {
+      filter: drop-shadow(2px 2px 0px #000);
+      transform: scale(1);
+      bottom: -5px;
+      right: 8px;
+    }
+  }
+
+  .login-button {
+    margin-top: 5px;
+  }
+}

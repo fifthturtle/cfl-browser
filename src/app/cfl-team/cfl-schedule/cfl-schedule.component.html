@@ -1,0 +1,23 @@
+<div class="header team-schedule">
+    Schedule/Results
+</div>
+<div class="table">
+    <div class="table-row table-header schedule-row">
+        <div>Week</div>
+        <div>Opponent</div>
+        <div>Result</div>
+    </div>
+    <perfect-scrollbar style="max-height:395px">
+        <div class="table-body">
+            <div class="table-row schedule-row" *ngFor="let game of schedule">
+                <div>{{ game.week }}</div>
+                <div>
+                    <cfl-team-link [id]="game.opponent"></cfl-team-link>
+                </div>
+                <div (click)="LoadBoxscore(game.id)" [ngClass]="{'nav-link' : !!game.score }">
+                    {{ game.score }}
+                </div>
+            </div>
+        </div>
+    </perfect-scrollbar>
+</div>

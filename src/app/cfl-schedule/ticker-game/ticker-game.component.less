@@ -1,0 +1,42 @@
+.ticker-game {
+  text-align: left;
+  /*flex: 1 0 100px;*/
+  /*flex: 1 0 calc(16.67% - 20px);*/
+  display: inline-block;
+  width: calc(16.67% - 13px);
+  padding: 3px 5px;
+  color: white;
+  border-left: 2px solid beige;
+  cursor: pointer;
+  font-size: 80%;
+
+  @media screen and (max-width: 600px) {
+    width: 120px;
+  }
+
+  :last-child {
+    border-width: 0px;
+  }
+
+  &:hover {
+    background-color: beige;
+    color: black;
+  }
+
+  .game {
+    display: flex;
+
+    & > div {
+      flex: 7;
+    }
+
+    .game-score {
+      flex: 3;
+      text-align: right;
+
+      .tiebreaker {
+        font-size: xx-small;
+      }
+    }
+  }
+}

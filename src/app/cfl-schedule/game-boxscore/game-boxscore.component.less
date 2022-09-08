@@ -1,0 +1,127 @@
+.game-boxscore {
+  display: inline-block;
+  width: 50%;
+  padding-bottom: 60px;
+
+  @media screen and (max-width: 600px) {
+    padding-bottom: 22px;
+  }
+}
+
+.game-boxscore-position {
+  display: flex;
+  background-color: beige;
+  color: black;
+
+  &:nth-child(odd) {
+    background-color: darken(beige, 15%);
+  }
+
+  .game-boxscore-position-players {
+    border: 2px solid black;
+    flex: 18;
+    position: relative;
+    overflow: hidden;
+
+    .position-fade {
+      position: absolute;
+      font-size: 72px;
+      font-family: "Anton";
+      font-weight: 500;
+      left: 8px;
+      top: 32px;
+      margin: 0 auto;
+      color: rgba(30, 30, 30, 0.12);
+      text-align: left;
+
+      @media screen and (min-width: 600px) {
+        display: none;
+      }
+    }
+
+    .right-fade {
+      text-align: right;
+      right: 8px;
+    }
+  }
+
+  .game-boxscore-position-header {
+    flex: 2;
+    text-align: center;
+    background-color: darkgreen;
+    font-family: "Shadows Into Light";
+    color: white;
+    font-size: 2em;
+    padding-top: 10px;
+    font-weight: 900;
+
+    @media screen and (max-width: 600px) {
+      display: none;
+    }
+  }
+}
+
+.reverse {
+  flex-direction: row-reverse;
+}
+
+.right-align {
+  text-align: right;
+}
+
+.game-boxscore-position-player {
+  display: flex;
+  border-bottom: 1px solid black;
+
+  .game-boxscore-position-player-image {
+    flex: 2;
+    position: relative;
+
+    @media screen and (max-width: 600px) {
+      flex: 0;
+    }
+
+    & > img {
+      width: 40px;
+      height: 40px;
+      position: absolute;
+      bottom: 0;
+      left: 8px;
+      border-radius: 30px;
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .right {
+      left: 0;
+      right: 18px;
+    }
+  }
+
+  .game-boxscore-position-player-data {
+    flex: 18;
+
+    @media screen and (max-width: 600px) {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      margin: 0 1.8%;
+    }
+  }
+
+  .game-boxscore-position-player-score {
+    font-size: 2em;
+    font-weight: 900;
+    text-align: center;
+    flex: 2;
+    line-height: 1.5;
+
+    @media screen and (max-width: 600px) {
+      flex: 4;
+      font-size: 1.2em;
+    }
+  }
+
+  .no-score {
+    color: rgba(0, 0, 0, 0.2);
+  }
+}

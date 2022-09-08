@@ -1,0 +1,12 @@
+<div class="cfl-schedule-wrapper">
+    <div class="cfl-schedule-nav">
+        <mat-icon [ngClass]="{'transparent': week.value === 1, 'nav-arrow': week.value !== 1 }" (click)="navWeek(week.value-1)">arrow_left</mat-icon>
+        <span class="scores-label">Week {{ week.value }}<span class="no-phone"> Schedule</span></span>
+        <mat-icon [ngClass]="{'transparent': week.value === 18, 'nav-arrow': week.value !== 18 }" (click)="navWeek(week.value+1)">arrow_right</mat-icon>
+    </div>
+    <div *ngIf="!!schedule.length" class="cfl-schedule">
+        <perfect-scrollbar [config]="scrollConfig">
+            <ticker-game *ngFor="let game of schedule" [game]="game" (click)="Boxscore(game._id)"></ticker-game>
+        </perfect-scrollbar>
+    </div>
+</div>

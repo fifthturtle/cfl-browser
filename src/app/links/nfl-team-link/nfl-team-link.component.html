@@ -1,0 +1,7 @@
+<div class="nfl-team-link">
+    <ng-container *ngIf="!!pic">
+        <img [src]="image" class="nfl-team-image">
+    </ng-container>
+    <span [ngClass]="{'super': !!pic }">{{ teamDisplay }}</span>
+</div>
+<span *ngIf="!id">FA</span>

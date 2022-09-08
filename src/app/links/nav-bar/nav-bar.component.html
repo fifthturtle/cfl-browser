@@ -1,0 +1,35 @@
+<div class="navBar">
+    <ul>
+        <li>
+            <a routerLink="/" (click)="turnOffMenu()">Standings</a>
+        </li>
+        <li>
+            <a routerLink="/moves" (click)="turnOffMenu()">Moves</a>
+        </li>
+        <li>
+            <a routerLink="/stats" (click)="turnOffMenu()">Stats</a>
+        </li>
+        <li>
+            <a routerLink="/nfl-schedule" (click)="turnOffMenu()">NFL Schedule</a>
+        </li>
+        <li>
+            <a routerLink="/draft" (click)="turnOffMenu()">Draft</a>
+        </li>
+        <li>
+            <a routerLink="/rules" (click)="turnOffMenu()">Rules</a>
+        </li>
+        <li *ngIf="!!owner">
+            <a routerLink="/team/{{owner.team}}" (click)="turnOffMenu()">My Team</a>`
+        </li>
+        <div *ngIf="!!owner && !!owner.admin">
+            <li>
+                <a routerLink="/admin" (click)="turnOffMenu()">Admin</a>
+            </li>
+            <!-- <li>
+                <span class="adminInfo" style="color:white">
+                    {{ size.x + ", " + size.y}}
+                </span>
+            </li> -->
+        </div>
+    </ul>
+</div>

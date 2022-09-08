@@ -1,0 +1,26 @@
+<div class="table">
+    <perfect-scrollbar>
+        <div class="roster-wrapper">
+            <ng-container *ngFor="let pos of ['QB','RB','WR','K','DEF','IR']">
+                <div *ngIf="!!roster[pos] && roster[pos].length" class="position-section">
+                    <div class="position-header">{{ pos }}</div>
+                    <div class="position-players">
+                        <div *ngFor="let player of roster[pos]" class="position-player">
+                            <div>
+                                <img class="player-image-roster" [src]="player.pic">
+                            </div>
+                            <div>
+                                <div>
+                                    <player-link [player]="player"></player-link>
+                                </div>
+                                <div>
+                                    <nfl-team-link [id]="player.weeks[player.weeks.length - 1].nflteam" display="fullName"></nfl-team-link>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </perfect-scrollbar>
+</div>

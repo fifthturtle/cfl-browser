@@ -1,0 +1,64 @@
+.team-header {
+  .team-logo {
+    height: 40px;
+    width: 40px;
+    float: right;
+    padding: 5px 20px;
+  }
+}
+
+.team-header-phone {
+  display: none;
+
+  @media screen and (max-width: 600px) {
+    display: block;
+    .team-record {
+      padding: 2%;
+    }
+
+    ul {
+      list-style-type: none;
+      overflow: hidden;
+      background-color: #333;
+      margin: 0;
+      padding: 0;
+      margin-bottom: 8px;
+    }
+
+    .underline {
+      text-decoration: underline;
+    }
+
+    li {
+      display: inline-block;
+      color: white;
+      padding: 2px;
+      margin-left: 18px;
+      text-decoration: none;
+      text-align: center;
+
+      mat-icon {
+        color: transparent;
+        vertical-align: middle;
+        display: none;
+      }
+
+      .visible {
+        display: none;
+      }
+    }
+
+    li:hover {
+      background-color: #111;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .funky-header {
+      background: linear-gradient(black, darkgreen);
+      padding: 2%;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+  }
+}

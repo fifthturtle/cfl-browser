@@ -1,0 +1,17 @@
+<div *ngIf="!!game" class="main-content main-content-wrapper game-boxscores">
+    <h2 class="header boxscore-header">
+        Week {{ game.week }}: <cfl-team-link [id]="team1"></cfl-team-link> vs. <cfl-team-link [id]="team2"></cfl-team-link>
+    </h2>
+    <div class="left-content solo">
+        <div class="game-boxscore-headers">
+            <game-boxscore-header teamKey="team1" [id]="team1" [score]="game.team1.score"></game-boxscore-header>
+            <game-boxscore-header teamKey="team2" [id]="team2" [score]="game.team2.score"></game-boxscore-header>
+        </div>
+        <perfect-scrollbar>
+            <div class="game-boxscores">
+                <game-boxscore teamKey="team1"></game-boxscore>
+                <game-boxscore teamKey="team2"></game-boxscore>
+            </div>
+        </perfect-scrollbar>
+    </div>
+</div>

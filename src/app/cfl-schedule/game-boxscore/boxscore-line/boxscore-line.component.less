@@ -1,0 +1,19 @@
+.boxscore-line {
+  font-style: oblique;
+  font-size: smaller;
+  z-index: 5;
+
+  @media screen and (max-width: 600px) {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 10px;
+    margin: 0;
+    line-height: 1;
+    vertical-align: super;
+  }
+}
+
+.tooltip-stats {
+  background: #b71c1c;
+}

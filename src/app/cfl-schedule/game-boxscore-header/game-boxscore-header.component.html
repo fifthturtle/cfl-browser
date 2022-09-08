@@ -1,0 +1,10 @@
+<div class="game-boxscore-header-wrapper">
+    <div class="game-boxscore-header" [ngClass]="{'reverse': teamKey === 'team2'}">
+        <div class="game-boxscore-header-teamname" [ngClass]="{'right-align' : teamKey === 'team2' }">
+            {{ name }}
+        </div>
+        <div [ngClass]="{'right-align' : teamKey === 'team1' }">
+            {{ score }}
+        </div>
+    </div>
+</div>

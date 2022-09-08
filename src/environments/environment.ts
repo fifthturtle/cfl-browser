@@ -3,7 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  URL: "http://192.168.12.198:8080/api/",
+  URLapi: "http://ec2-54-219-64-124.us-west-1.compute.amazonaws.com/api/",
+  // URLapi: "http://ec2-54-193-23-37.us-west-1.compute.amazonaws.com/api/",
+  // URLapi: "http://ec2-3-101-135-221.us-west-1.compute.amazonaws.com/api/",
+  socket: "http://192.168.12.198:8080",
 };
 
 /*

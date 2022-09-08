@@ -1,0 +1,102 @@
+.move-float {
+  z-index: 100;
+  filter: drop-shadow(18px 18px 4px rgba(0, 0, 0, 0.4));
+  background-color: darkgreen;
+  border-radius: 3%;
+  border: 4px solid wheat;
+  text-align: center;
+  color: wheat;
+  position: relative;
+
+  @media screen and (max-width: 600px) {
+    font-size: smaller;
+  }
+
+  .cancel-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: lighten(red, 15%);
+    cursor: pointer;
+    margin: 6px;
+    z-index: 101;
+    font-size: large;
+    text-align: right;
+  }
+
+  .move-header {
+    font-size: 200%;
+    font-family: "Shadows Into Light";
+    background: linear-gradient(black, darkgreen);
+    padding: 10px;
+    position: relative;
+  }
+
+  .move-body {
+    display: flex;
+    width: 100%;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    min-height: 240px;
+    & > div {
+      flex: 5;
+
+      h3 {
+        margin: 0;
+        font-size: large;
+        font-family: "Shadows Into Light";
+      }
+    }
+
+    .move-add-player {
+      flex: 4;
+      border-right: 2px solid black;
+      .player-image {
+        height: 60px;
+        width: 60px;
+        background-color: rgba(255, 255, 255, 0.3);
+        border: 2px solid black;
+        border-radius: 50%;
+      }
+    }
+
+    .move-drop-position {
+      display: flex;
+      border-bottom: 2px solid black;
+
+      .move-drop-pos {
+        flex: 1;
+        font-family: "Shadows Into Light";
+      }
+
+      .move-drop-players {
+        flex: 3;
+        text-align: left;
+
+        .drop {
+          text-decoration: underline;
+          font-weight: 900;
+        }
+
+        .move-drop-player {
+          &:hover {
+            background-color: beige;
+            color: black;
+            cursor: pointer;
+          }
+
+          .check {
+            font-size: small;
+            height: 16px;
+            width: 16px;
+          }
+        }
+      }
+    }
+  }
+
+  .move-submit {
+    padding: 8px;
+    background: linear-gradient(darkgreen, darkgreen, black);
+  }
+}

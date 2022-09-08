@@ -1,0 +1,45 @@
+.game-boxscore-header-wrapper {
+  display: inline-block;
+  width: 50%;
+
+  .game-boxscore-header {
+    display: flex;
+    font-size: 200%;
+    line-height: 1.5;
+    background: linear-gradient(black, darkgreen);
+    padding: 0 10%;
+    font-weight: bold;
+    color: wheat;
+    border-top: 2px solid black;
+
+    @media screen and (max-width: 600px) {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      padding: 0 2%;
+      font-size: 100%;
+    }
+
+    & > div {
+      flex: 2;
+    }
+
+    .game-boxscore-header-teamname {
+      flex: 15;
+
+      @media screen and (max-width: 600px) {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}
+
+.reverse {
+  flex-direction: row-reverse;
+}
+
+.right-align {
+  text-align: right;
+}

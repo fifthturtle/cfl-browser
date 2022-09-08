@@ -1,0 +1,25 @@
+<div class="game-boxscore" *ngIf="!!team">
+    <div class="game-boxscore-body">
+        <div *ngFor="let pos of ['QB', 'RB', 'WR', 'K', 'DEF']" class="game-boxscore-position" [ngClass]="{'reverse': teamKey === 'team2'}">
+            <div class="game-boxscore-position-header">{{ pos }}</div>
+            <div class="game-boxscore-position-players">
+                <div class="position-fade" [ngClass]="{'right-fade': teamKey === 'team2'}">{{ pos | fixDefense }}</div>
+                <div class="game-boxscore-position-player" (click)="navigate('player', player._id)" [ngClass]="{'reverse': teamKey === 'team2'}" *ngFor="let player of (players[pos] | sortTeam); let i = index;">
+                    <div class="game-boxscore-position-player-image player-image player-image-hide">
+                        <img [src]="player.pic" [ngClass]="{'right': teamKey === 'team2'}">
+                    </div>
+                    <div class="game-boxscore-position-player-data" [ngClass]="{'right-align' : teamKey === 'team1' }">
+                        {{ player.fullname }}
+                        <ng-container *ngIf="player.position !== 'DEF'">
+                            - <nfl-team-link [id]="player.weeks[week-1].nflteam"></nfl-team-link>
+                        </ng-container>
+                        <boxscore-line [player]="player" [week]="week"></boxscore-line>
+                    </div>
+                    <div class="game-boxscore-position-player-score" [ngClass]="{'no-score': weekStarted && i >= maxes[pos]}">
+                        {{ player.gameScore }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
